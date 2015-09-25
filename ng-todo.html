@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" ng-app="TaskManager">
+<head>
+    <meta charset="utf-8">
+    <title>My ToDo List based on AngularJS</title>
+    <style>
+.done-true {
+    color:gray;
+    text-decoration:line-through;
+}
+
+#delete {
+    margin-left: 20px;
+}
+
+#add {
+   margin:10px 5px;
+}
+
+#text {
+   margin-top:10px;
+   width: 327px;
+}      
+    </style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="scripts/app.js"></script>
+</head>
+<body style="margin-left: 20%">
+<h1><img src="https://angularjs.org/img/AngularJS-large.png" /> </h1><h2>To Do List</h2>
+
+<div ng-controller="mainCtrl">
+
+     <p>Finished Tasks: {{getDoneCount()}} / {{tasks.length}}<button id="delete" class="btn btn-success" ng-click="deleteDone()">Delete Finish</button>
+                     <button id="reset" class="btn btn-default" ng-click="deleteAll()">Reset</button>
+     </p> 
+
+     <ul>
+         <li ng-repeat="task in tasks">
+         <span class="done-{{task.done}}" ng-model="task.done">{{task.body}}</span>
+         <input type="checkbox" ng-model="task.done">
+         </li>
+     </ul>
+
+     <form ng-submit="addNewTask()">
+        <input id="text" type="text" class="form-control" ng-model="newTask" placeholder="TODO">
+        <button id="add" type="submit" class="btn btn-primary">AddTask</button>
+     </formb>
+</div>
+
+</body>
+</html>
